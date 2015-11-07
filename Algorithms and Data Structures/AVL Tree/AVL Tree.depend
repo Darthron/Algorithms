@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1444681294 source:d:\informatica\c++\avl tree\main.cpp
+	<iostream>
+	"AVL.h"
+
+1444686636 d:\informatica\c++\avl tree\avl.h
+
+1444686874 source:d:\informatica\c++\avl tree\avl.cpp
+	"AVL.h"
+	<stdlib.h>
+	<iostream>
+
