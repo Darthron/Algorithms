@@ -13,7 +13,7 @@ int		problem_one(int n)
 	res = 0;
 	while (n)
 	{
-		res += n % 2;
+		res += (n & 1);
 		n >>= 1;
 	}
 
@@ -43,7 +43,7 @@ int		problem_two(int n)
 	res = 0;
 	while (n)
 	{
-		res += n % 2;
+		res += (n & 1);
 		n >>= 1;
 	}
 
@@ -56,7 +56,7 @@ int		problem_two(int n)
 	n = (n >> 8) ^ (n & 0xff);
 	n = (n >> 4) ^ (n & 0xf);
 	n = (n >> 2) ^ (n & 3);
-	res = n % 2;
+	res = n & 1;
 }
 
 int		determine_power(int x, int y, int beg, int end)
@@ -93,6 +93,33 @@ int		problem_three(int x, int y)
 		x -= y << power; // x = x - y * 2^k
 		res += 1 << power; // res = res + 2^k
 	}
+}
+
+// Adding two numbers without using addition
+// The principle, as seen in Cracking the Code Interview:
+// a = 789
+// b = 555
+// Adding without carrying => 234  |
+//                                 | => result = 1110 + 234 = 1344        
+// Doing just the carrying => 1110 |
+int
+add(int a,
+    int b)
+{
+    int sum;
+    int carry;
+
+    if (0 == b)
+    {
+        return a;
+    }
+
+    // Adding without carrying
+    sum = a ^ b;
+    // Carrying; The number shifts because the carry is passed to the next pair of bits
+    carry = (a & b) << 1;
+    return add(sum,
+               carry);
 }
 
 int		main()
